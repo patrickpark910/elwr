@@ -2,7 +2,7 @@ from sympy import symbols, N
 
 # Constants
 NA = 6.022e23  # Avogadro's number, atoms/mol
-density_UO2 = 9.5 # 10.96 # g/cm^3, density of UO2 / 10.96 pNNL test 
+density_UO2 = 9.5 # 9.5 # 10.96 # g/cm^3, density of UO2 / 10.96 pNNL test 
 
 # Molar masses in g/mol
 molar_mass_U235 = 235.0439299
@@ -10,7 +10,7 @@ molar_mass_U238 = 238.0507882
 molar_mass_O = 16
 
 # Enrichment level
-e_list = [0.07,0.007204,0.003] # 0.03 PNNL test
+e_list = [0.07,0.007204]# ,0.045,0.0296] # 0.03 PNNL test
 
 for enrichment_235 in e_list:
 	# Calculate average molar mass of enriched uranium

@@ -10,18 +10,19 @@ For our first model, we try a conservative approach of modeling just an infinite
 
 ## Recompiling MCODE for Windows
 First, if you are using Windows like I am, you'll need to re-compile MCODE.
-1. [Install MSYS2.](https://www.msys2.org/)
-2. Install mingw-w64 in the MSYS2 `ucrt64.exe` terminal: `pacman -S mingw-w64-ucrt-x86_64-gcc`
-3. Press Enter to auto-download the recommended packages.
-4. Now using the `ucrt64.exe` terminal you can call `gcc` to build C software for Windows.
-5. Compile using the following code:
+1. In `mcode12.h`, change `OPSYS==1` for Windows.
+2. [Install MSYS2.](https://www.msys2.org/)
+3. Install mingw-w64 in the MSYS2 `ucrt64.exe` terminal: `pacman -S mingw-w64-ucrt-x86_64-gcc`
+4. Press Enter to auto-download the recommended packages.
+5. Now using the `ucrt64.exe` terminal you can call `gcc` to build C software for Windows.
+6. Compile using the following code:
 ```sh 
 gcc C:/MCNP_SOURCE/MCODE12/mcode12.c -o C:/MCNP_SOURCE/MCODE12/mcode12.exe
 ```
-with the proper substitution file directory for `mcode12`. Repeat for `mcodeout12`.
+with the proper substitution of file directory for `mcode12`. Repeat for `mcodeout12`.
 
-## Adding MCODE permissions on Linux
-Set basic execution permission:
+## Setting up MCODE on Linux
+1. Adding MCODE permissions. Set basic execution permission:
 ```sh
 chmod +x ./MCODE12/mcode12
 chmod +x ./MCODE12/mcodeout12
@@ -31,6 +32,23 @@ Set ACL for user:
 ```sh
 setfacl -m u:patrick:rwx ./MCODE12/mcode12
 setfacl -m u:patrick:rwx ./MCODE12/mcodeout12
+```
+
+2. If you're uploading text files from Windows to Linux, then you need to strip DOS return carriages from every line of your file. Install `dos2unix`:
+```sh
+sudo apt-get install dos2unix
+```
+
+You will run into problems with MCODE not recongizing DOS return characters if you don't manually put a space at the end of every line. (I had problems with MCODE recognizing the `WGU`, `begin_mcode_ACT`, `end_mcode_ACT` keywords.)
+
+3. Set up MCNP `DATAPATH` in the Linux shell:
+```sh
+DATAPATH=/opt/MCNP/MCNP_DATA/
+export DATAPATH
+printenv DATAPATH
+sudo nano ~/.bashrc
+export DATAPATH=/opt/MCNP/MCNP_DATA/
+source ~/.bashrc
 ```
 
 ## Executing MCODE

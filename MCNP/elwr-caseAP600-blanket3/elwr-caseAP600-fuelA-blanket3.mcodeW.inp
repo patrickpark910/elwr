@@ -1,7 +1,7 @@
 $ TITLE line
 TTL ELWR AP600 Model
 $   CTRL command initial-inp
-MCD  1   mcnp6  elwr-caseAP600-fuelA-blanket3.inp  o_elwr-caseAP600-fuelA-blanket3.s  
+MCD  1   mcnp6  elwr-caseAP600-fuelA-blanket3.inp  o_elwr-caseAP600.s  
 $    ORIGEN-COMMAND              ORIGEN-LIBRARY-PATH       decay-lib     gamma-lib 
 ORG O2_THERM  C:\MCNP_SOURCE\ORIGEN22\LIBS   DECAY.LIB  GXUO2BRM.LIB 
 $  total#  CELL-ID TYPE    IHM(g)  VOL(cm3)  ORG-XS-LIB

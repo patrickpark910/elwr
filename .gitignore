@@ -1,0 +1,5 @@
+# Ignore all files ending with .r
+*.r
+
+# Ignore all files starting with runtp
+runtp*

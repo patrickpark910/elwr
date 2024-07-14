@@ -51,10 +51,15 @@ export DATAPATH=/opt/MCNP/MCNP_DATA/
 source ~/.bashrc
 ```
 
-## Executing MCODE
+## Setting up MCODE Input
 
 1. Create complete MCNP input deck, add `ksrc 0 0 0`, run, keep `.s` file.
-2. Now we need to set up the MCODE input file. Here's an example:
+2. Make sure to have a `prdmp` card bc `mcode121.c` looks for a `.mct` file.
+```
+prdmp 0 200 -1 4 0
+```
+
+3. Now we need to set up the MCODE input file. Here's an example:
 ```
 $ TITLE line
 TTL ELWR AP600 Model
@@ -83,4 +88,15 @@ END  7  $    ending point
 3. `TTL`: Set title
 4. `MCD`: Set path to MCNP6.exe, path to MCNP input, and path to equilibrium source distribution file (optional)
 5. `ORG`: Set paths to origen22.exe, Origen data libraries, decay library, and gamma library.
-6. 
+
+## Running MCODE Input
+```sh
+dos2unix **
+/home/patrick/MCODE12/mcode12 elwr-caseAP600-fuelA-blanket3-test.mcodeL.inp
+tail -f nohup.out
+```
+
+## Running MCODE Output
+```sh
+/home/patrick/MCODE12/mcodeout12 elwr-caseAP600-fuelA-blanket3.mcodeL.inp
+```

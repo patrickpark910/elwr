@@ -92,7 +92,7 @@ END  7  $    ending point
 ## Running MCODE Input
 ```sh
 dos2unix **
-/home/patrick/MCODE12/mcode12 elwr-caseAP600-fuelA-blanket3-test.mcodeL.inp
+nohup /home/patrick/MCODE12/mcode12 elwr-coreA.mcode.inp &
 tail -f nohup.out
 ```
 

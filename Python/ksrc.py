@@ -2,7 +2,7 @@ import numpy as np
 
 # Define the step and grid size
 step = 1.25
-size = 16
+size = 4*17
 
 # Calculate the range of values centered around zero
 offsets = np.linspace(-step * (size // 2), step * (size // 2), size)

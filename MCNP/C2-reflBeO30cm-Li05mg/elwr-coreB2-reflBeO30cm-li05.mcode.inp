@@ -1,0 +1,23 @@
+$ TITLE line
+TTL ELWR Core B2 (4.0%e/2.2%e UO2 + BeO refl + 5 mg/kg Li-6 in clad)
+$   CTRL command initial-inp
+MCD  1   /opt/MCNP/MCNP_CODE/bin/mcnp6  elwr-coreB2-reflBeO30cm-li05.inp  o_elwr-coreA2-reflBeO30cm.s  
+$    ORIGEN-COMMAND              ORIGEN-LIBRARY-PATH       decay-lib     gamma-lib 
+ORG /home/patrick/ORIGEN22/origen22  /home/patrick/ORIGEN22/LIBS   DECAY.LIB  GXUO2BRM.LIB 
+$  total#  CELL-ID TYPE  IHM(g)   VOL(cm3)  ORG-XS-LIB
+CEL  2       11    1     2617512  312592   PWRUE.LIB 
+             21    1      908141  108450   PWRUE.LIB 
+$ TOTAL VOLUME (cm3) 
+VOL  421042 
+$ power density, opt: WGU=W/gIHM, KWL=kW/(liter core)
+PDE 28.3635 WGU  
+$ NORMALIZATION option, 1=FLUX, 2=POWER
+NOR 2 
+$ Predictor-Corrector option, 1=ON, 0=OFF
+COR 0 
+$ opt E=MWd/kg, D=EFPD
+$ points 0    1    2    3    4    5    6    7 
+DEP  E   0  0.1    1    4    7   10   20   30 
+NMD       18    36   36   36   36   36   36  
+STA  0  $  starting point
+END  7  $    ending point

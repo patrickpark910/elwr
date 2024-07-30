@@ -10,7 +10,7 @@ molar_mass_U238 = 238.0507882
 molar_mass_O = 16
 
 # Enrichment level
-e_list = [0.04,0.022] # 0.03 PNNL test
+e_list = [0.035,0.007204] #,0.022] # 0.03 PNNL test
 
 for enrichment_235 in e_list:
 	# Calculate average molar mass of enriched uranium

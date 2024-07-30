@@ -68,7 +68,7 @@ c fuel pins
 1  rcc   0 0 -72.08   0 0 144.16   0.4095    $ active fuel height 144.16 cm
 2  rcc   0 0 -72.08   0 0 144.16   0.4177    $ gap
 3  rcc   0 0 -86.50   0 0 173.00   0.4750    $ clad - see 07-19 note
-11 rcc   0 0 -72.08   0 0 144.16   0.4750    $ lithium-doped length of clad - see 07-24 note
+c 11 rcc   0 0 -72.08   0 0 144.16   0.4750    $ lithium-doped length of clad - see 07-24 note
 c guide tubes
 4  rcc   0 0 -86.50   0 0 420.32   0.57294   $ water
 5  rcc   0 0 -86.50   0 0 420.32   0.61301   $ clad
@@ -94,10 +94,6 @@ c
 c Patrick 2024-07-10 
 c +0.05 cm of water gap from LANL e3fa.txt 
 c PWR pin cell benchmark input deck
-c
-c Patrick 2024-07-24
-c lithium only placed along length of cladding 
-c around active fuel zone per TPC/TPBAR design
 c
 
 c -- BEGIN OPTIONS --
@@ -267,7 +263,7 @@ m125  3006.81c 0.001005
      40094.81c 0.173625 
      40096.81c 0.027972 
 c
-c stainless steel 304 | rho = 7..92 g/cc 
+c stainless steel 304 | rho = 7.92 g/cc 
 m122  24052.81c -0.190 $ Cr
       25055.81c -0.020 $ Mn
       26056.81c -0.695 $ Fe
@@ -294,8 +290,8 @@ fm4 -1 125 (33:36:105:116) $ (n,nt)+(n,nt2a)+(n,t)+(n,pt)
 c
 c
 c nps 1e5
-ksrc 0 0 0
-kcode 100000 1 50 150
+c ksrc 0 0 0
+kcode 30000 1 5 105
 prdmp 0 50 -1 4 0
 c
  

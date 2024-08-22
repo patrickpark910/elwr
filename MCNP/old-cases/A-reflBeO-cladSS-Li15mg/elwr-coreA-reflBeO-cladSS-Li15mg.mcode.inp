@@ -1,0 +1,22 @@
+$ TITLE line
+TTL ELWR Core A Model
+$   CTRL command initial-inp
+MCD  1   /opt/MCNP/MCNP_CODE/bin/mcnp6  elwr-coreA-reflBeO-cladSS-Li15mg.inp  o_elwr-coreA-reflBeO-cladSS-clean.s  
+$    ORIGEN-COMMAND              ORIGEN-LIBRARY-PATH       decay-lib     gamma-lib 
+ORG /home/patrick/ORIGEN22/origen22  /home/patrick/ORIGEN22/LIBS   DECAY.LIB  GXUO2BRM.LIB 
+$  total#  CELL-ID TYPE  IHM(g)   VOL(cm3)  ORG-XS-LIB
+CEL  1       11    1     3525655  421042   PWRUE.LIB 
+$ TOTAL VOLUME (cm3) 
+VOL  421042 
+$ power density, opt: WGU=W/gIHM, KWL=kW/(liter core)
+PDE 28.3635 WGU  
+$ NORMALIZATION option, 1=FLUX, 2=POWER
+NOR 2 
+$ Predictor-Corrector option, 1=ON, 0=OFF
+COR 1 
+$ opt E=MWd/kg, D=EFPD
+$ points 0    1    2    3    4    5    6    7
+DEP  E   0  0.1    1    5   10   15   20   25 
+NMD       18    36   36   36   36   36   36  
+STA  0  $  starting point
+END  7  $    ending point

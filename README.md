@@ -24,14 +24,18 @@ with the proper substitution of file directory for `mcode12`. Repeat for `mcodeo
 ## Setting up MCODE on Linux
 1. Adding MCODE permissions. Set basic execution permission:
 ```sh
+chmod +x /opt/MCNP/MCNP_CODE/bin/mcnp6
 chmod +x ./MCODE12/mcode12
 chmod +x ./MCODE12/mcodeout12
+chmod +x ./ORIGEN22/origen22
 ```
 
 Set ACL for user:
 ```sh
+setfacl -m u:patrick:rwx /opt/MCNP/MCNP_CODE/bin/mcnp6
 setfacl -m u:patrick:rwx ./MCODE12/mcode12
 setfacl -m u:patrick:rwx ./MCODE12/mcodeout12
+setfacl -m u:patrick:rwx ./ORIGEN22/origen22
 ```
 
 2. If you're uploading text files from Windows to Linux, then you need to strip DOS return carriages from every line of your file. Install `dos2unix`:
@@ -99,4 +103,9 @@ tail -f nohup.out
 ## Running MCODE Output
 ```sh
 /home/patrick/MCODE12/mcodeout12 elwr-caseAP600-fuelA-blanket3.mcodeL.inp
+```
+
+## Running bash script
+```sh
+./run_mcode_zr.sh
 ```

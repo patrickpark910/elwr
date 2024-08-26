@@ -5,7 +5,7 @@ uo2_kg = 4000
 u_kg = uo2_kg * 238/(32+238)
 # print(u_kg)
 
-li6_mg_per_u_kg = [0.1,1,5,10,15,20,25,30,35]#20,25]
+li6_mg_per_u_kg = [35,40]#20,25]
 clad_density_gcc = 6.56
 num_pins = 17*17-25
 num_FAs = 21
@@ -30,9 +30,9 @@ for li6_mg_per_u_kg in li6_mg_per_u_kg:
 
     print(f"c lithium-doped zircaloy cladding | rho = {new_clad_density_gcc:.3f} ")
     print(f"c {li6_mg_per_u_kg} mg(Li-6)/kg(U) = tot {li6_g_core*1000:.0f} mg Li-6 / {u_kg:.0f} kg U")
-    print(f"m125  3006.81c  -{li6_wt_frac:.8f} ")
+    print(f"m3101  3006.81c  -{li6_wt_frac:.8f} ")
     for i in zr4_wt_fracs.keys():
         # i_mass_tot = zr4_wt_fracs[i]*clad_density_gcc*breed_clad_cc_tot
         i_wt_frac = (1-li6_wt_frac)*zr4_wt_fracs[i]
-        print(f"     {i}.81c  -{i_wt_frac:.8f} ")
+        print(f"      {i}.81c  -{i_wt_frac:.8f} ")
 

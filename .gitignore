@@ -1,6 +1,7 @@
 # Ignore all files ending with .r
 *.r
 *.DS_Store
+*.msht
 
 # Ignore all files starting with runtp
 runtp*

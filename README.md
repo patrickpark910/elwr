@@ -109,3 +109,17 @@ tail -f nohup.out
 ```sh
 ./run_mcode_zr.sh
 ```
+
+## Adding Executable to PATH
+1. Check which shell you are using. SGS Zotacs should use `bash`.
+```sh
+echo $SHELL
+```
+2. Open `bash` configuration file with a text editor.
+```sh
+nano ~/.bashrc
+export PATH="$PATH:/home/patrick/MCODE12/mcode12:/home/patrick/MCODE12/mcodeout12"
+source ~/.bashrc
+echo $PATH
+
+```

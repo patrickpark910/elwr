@@ -1,0 +1,31 @@
+$ TITLE line
+TTL ELWR Core A (3.5%e UO2, Zr clad, Li-6 40 mg/kgU, 10 burnup zones)
+$   CTRL command initial-inp
+MCD  1   /opt/MCNP/MCNP_CODE/bin/mcnp6  elwr-coreA-cladZr-Li40-bu10.inp  o_elwr-coreA-cladZr-Li00-bu10.s  
+$    ORIGEN-COMMAND              ORIGEN-LIBRARY-PATH       decay-lib     gamma-lib 
+ORG /home/patrick/ORIGEN22/origen22  /home/patrick/ORIGEN22/LIBS   DECAY.LIB  GXUO2BRM.LIB 
+$  total#  CELL-ID TYPE  IHM(g)   VOL(cm3)  ORG-XS-LIB
+CEL  10       111   1     1017505  121513   PWRUE.LIB 
+              121   1      325602   38884   PWRUE.LIB
+              211   1      508752   60756   PWRUE.LIB
+              221   1      162801   19442   PWRUE.LIB
+              311   1      508752   60756   PWRUE.LIB
+              321   1      162801   19442   PWRUE.LIB
+              411   1      508752   60756   PWRUE.LIB
+              421   1      162801   19442   PWRUE.LIB
+              511   1      127188   15189   PWRUE.LIB
+              521   1       40700    4861   PWRUE.LIB
+$ TOTAL VOLUME (cm3) 
+VOL  421042 
+$ power density, opt: WGU=W/gIHM, KWL=kW/(liter core)
+PDE 237.50585 KWL  
+$ NORMALIZATION option, 1=FLUX, 2=POWER
+NOR 2 
+$ Predictor-Corrector option, 1=ON, 0=OFF
+COR 1 
+$ opt E=MWd/kg, D=EFPD
+$ points 0    1    2    3    4    5    6    7
+DEP  E   0  0.1    1    5   10   15   20   25 
+NMD       18    36   36   36   36   36   36  
+STA  0  $  starting point
+END  7  $    ending point

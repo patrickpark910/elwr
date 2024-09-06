@@ -28,5 +28,5 @@ for enrichment_235 in e_list:
     print(f"for {enrichment_235*100} wt%e DU at {density_DU} g/cc\n",\
         f"U25: {(n_U235*1e-24):.6e}\n",\
         f"U28: {(n_U238*1e-24):.6e}\n", \
-        f"sum: {(n_U235+n_U238)*1e-24:.5f}\n",\
+        f"sum: {(n_U235+n_U238)*1e-24:.11f}\n",\
         f"check: sum for 0.25%e DU should be 4.794E-02 from PNNL 2021")

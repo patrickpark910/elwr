@@ -32,7 +32,7 @@ print(u_kg)
 
 li6_e = 0.9
 correction = 1 # 0.605887557 # 0.605887557
-li6_mg_per_u_kg = [70] # ,34,36,39.425,40]
+li6_mg_per_u_kg = [200,180,160,140,120] # ,34,36,39.425,40]
 
 clad_density_gcc = 6.56
 num_FAs = 21
@@ -70,5 +70,5 @@ for li6_mg_per_u_kg in li6_mg_per_u_kg:
     print(f"       3007.81c  {li7_at_dens:.10f} ")
     for i in zr4_wt_fracs.keys():
         i_wt_frac = zr4_wt_fracs[i] # (1-li6_at_dens)*
-        print(f"      {i}.81c  {i_wt_frac:.8f} ")
+        # print(f"      {i}.81c  {i_wt_frac:.8f} ")
 

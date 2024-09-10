@@ -1,0 +1,502 @@
+          Code Name & Version = MCNP_6.20, 6.2.0
+  
+     _/      _/        _/_/_/       _/      _/       _/_/_/         _/_/_/ 
+    _/_/  _/_/      _/             _/_/    _/       _/    _/     _/        
+   _/  _/  _/      _/             _/  _/  _/       _/_/_/       _/_/_/     
+  _/      _/      _/             _/    _/_/       _/           _/    _/    
+ _/      _/        _/_/_/       _/      _/       _/             _/_/       
+  
+  +-----------------------------------------------------------------------+
+  | Copyright (2018).  Los Alamos National Security, LLC.  All rights     !
+  | reserved.                                                             !
+  |  This material was produced under U.S. Government contract            !
+  | DE-AC52-06NA25396 for Los Alamos National Laboratory, which is        !
+  | operated by Los Alamos National Security, LLC for the U.S.            !
+  | Department of Energy. The Government is granted for itself and        !
+  | others acting on its behalf a paid-up, nonexclusive, irrevocable      !
+  | worldwide license in this material to reproduce, prepare derivative   !
+  | works, and perform publicly and display publicly. Beginning five (5)  !
+  | years after February 14, 2018, subject to additional five-year        !
+  | worldwide renewals, the Government is granted for itself and others   !
+  | acting on its behalf a paid-up, nonexclusive, irrevocable worldwide   !
+  | license in this material to reproduce, prepare derivative works,      !
+  | distribute copies to the public, perform publicly and display         !
+  | publicly, and to permit others to do so. NEITHER THE UNITED STATES    !
+  | NOR THE UNITED STATES DEPARTMENT OF ENERGY, NOR LOS ALAMOS NATIONAL   !
+  | SECURITY, LLC, NOR ANY OF THEIR EMPLOYEES, MAKES ANY WARRANTY,        !
+  | EXPRESS OR IMPLIED, OR ASSUMES ANY LEGAL LIABILITY OR RESPONSIBILITY  !
+  | FOR THE ACCURACY, COMPLETENESS, OR USEFULNESS OF ANY INFORMATION,     !
+  | APPARATUS, PRODUCT, OR PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE  !
+  | WOULD NOT INFRINGE PRIVATELY OWNED RIGHTS.                            !
+  +-----------------------------------------------------------------------+
+  
+1mcnp     version 6     ld=02/20/18                     09/09/24 13:02:41 
+ *************************************************************************                 probid =  09/09/24 13:02:41 
+ i=clad1pp-old-2024-09-06.inp
+
+ 
+  comment.  Physics models disabled.
+         1-       PWR FUEL PIN: ZIRCALOY-4
+         2-       C
+         3-       C       LAST UPDATE 2024-09-06
+         4-       C       CHANGES BY PATRICK
+         5-       C       - FROM 4.3 WT% TO 3.5 WT% ENRICHMENT (FIXED)
+         6-       C       - SURFACE DEFS CHANGED TO BE WESTINGHOUSE PIN SPECS FROM ALEX'S DIPLOMA THESIS
+         7-       C       - ADDED ZR-94, ZR-96, SN FOR ZIRCALOY-4 MAT CARD FROM PNNL-15870
+         8-       C
+         9-       C
+        10-       C       CELL CARDS ************************************************************
+        11-       C
+        12-       C       -----------------------------------------------------------------------
+        13-       C
+        14-         1     1   0.0721288  -1                 VOL=421042  IMP:N=1  $  PELLET
+        15-         2     0               1 -2              VOL= 17031  IMP:N=1  $  GAP
+        16-         3     2  -6.5619000      2 -3           VOL=128433  IMP:N=1  $  CLADDING
+        17-       C
+        18-         4     3  -0.7000000      3  4 -5  6 -7  VOL=312197  IMP:N=1  $  UNIT CELL
+        19-         5     0                    -4: 5:-6: 7              IMP:N=0  $  OUTSIDE
+        20-       
+        21-       C       BLANK LINE DELIMITER --------------------------------------------------
+        22-       C
+        23-       C       SURFACE CARDS *********************************************************
+        24-       C
+        25-         1     CZ    0.4095 $  0.40000
+        26-         2     CZ    0.4177 $  0.41500
+        27-         3     CZ    0.4750 $  0.47500
+        28-       C
+        29-         4 -5  PX   -0.6250 $ -0.63000
+        30-         5 -4  PX    0.6250 $  0.63000
+        31-         6 -7  PY   -0.6250 $ -0.63000
+        32-         7 -6  PY    0.6250 $  0.63000
+        33-       
+        34-       C       BLANK LINE DELIMITER --------------------------------------------------
+        35-       C
+        36-       C
+        37-       C       DATA CARDS ************************************************************
+        38-       C
+        39-       C        900 K    600 K    600 K    600 K
+        40-         TMP   7.8E-8   5.2E-8   5.2E-8   5.2E-8   0
+        41-       C
+        42-       C       -----------------------------------------------------------------------
+        43-       C       MATERIALS
+        44-       C       -----------------------------------------------------------------------
+        45-       C
+        46-       C       -----------------------------------------------------------------------
+        47-       C       3.5 wt% ENRICHED URANIUM DIOXIDE (9.5 g/cc uranium effective)
+        48-       C       -----------------------------------------------------------------------
+        49-       C
+        50-          M1    8016.82c  0.0480857914
+        51-               92235.82c  0.0008518897 $  3.50 wt% U-235
+        52-               92238.82c  0.0231911372 $ 96.50 wt% U-238
+        53-       C
+        54-       C       -----------------------------------------------------------------------
+        55-       C       ZIRCALOY-4 CLADDING
+        56-       C       -----------------------------------------------------------------------
+        57-       c lithium-doped zircaloy-4 cladding | rho = 6.5619
+        58-       c 70 mg(Li-6)/kg(U) = tot 246802 mg / 3526 kg
+        59-       c  tot at dens = 0.0436990664
+        60-       m2     3006.81c  0.0001923869
+        61-              3007.81c  0.0000183265
+        62-              8016.81c  0.00029600
+        63-             24050.81c  0.00000330
+        64-             24052.81c  0.00006369
+        65-             24053.81c  0.00000722
+        66-             24054.81c  0.00000180
+        67-             26054.81c  0.00000825
+        68-             26056.81c  0.00012944
+        69-             26057.81c  0.00000299
+        70-             40090.81c  0.02187700
+        71-             40091.81c  0.00477100
+        72-             40092.81c  0.00729200
+        73-             40094.81c  0.00739000
+        74-             40096.81c  0.00119100
+        75-             50116.81c  0.00006728
+        76-             50117.81c  0.00003564
+        77-             50118.81c  0.00011229
+        78-             50119.81c  0.00003986
+        79-             50120.81c  0.00015126
+        80-             50122.81c  0.00002148
+        81-             50124.81c  0.00002687
+        82-       C
+        83-        MT2 FE56.24T $ (.23t 400 K, .25t 800 K)
+        84-       C
+        85-       C       -----------------------------------------------------------------------
+        86-       C       LITHIUM
+        87-       C       -----------------------------------------------------------------------
+        88-         M4 3006.81c 1
+  warning.  material         4 is used only for a perturbation or tally.
+        89-       C
+        90-       C       -----------------------------------------------------------------------
+        91-       C       LIGHT WATER
+        92-       C       -----------------------------------------------------------------------
+        93-       C
+        94-          M3    1001.81c  0.66666667
+        95-                8016.81c  0.33333333
+        96-         MT3    LWTR.04T
+        97-       C
+        98-       C       -----------------------------------------------------------------------
+        99-       C       TALLIES
+       100-       C       -----------------------------------------------------------------------
+       101-       C
+       102-       FC4 CLADDING W/O MULTIPLIER
+       103-       F4:N 2
+       104-       C
+       105-       FC14 CLADDING
+       106-       F14:N 2
+       107-       FM14 1 4 105 $ M4=LI-6 | MT105=(N,T)
+       108-       C
+       109-       C
+       110-       C       -----------------------------------------------------------------------
+       111-       C       OPTIONS
+       112-       C       -----------------------------------------------------------------------
+       113-         KCODE  10000 1.25 50 250
+       114-          KSRC  0 0 0
+       115-       C
+       116-       C       -----------------------------------------------------------------------
+       117-       C
+       118-       C PRINT
+       119-       C PRDMP 0 200 -1 4 0
+       120-       
+
+ ***************************************************
+ * Random Number Generator  =                    1 *
+ * Random Number Seed       =       19073486328125 *
+ * Random Number Multiplier =       19073486328125 *
+ * Random Number Adder      =                    0 *
+ * Random Number Bits Used  =                   48 *
+ * Random Number Stride     =               152917 *
+ ***************************************************
+
+ 
+  comment.  total fission nubar data are being used.
+ 
+  warning.    8016.81c and   8016.82c are both called for.
+ 
+  warning.    1 materials had unnormalized fractions. print table 40.
+1cells                                                                                                  print table 60
+
+                               atom        gram                                            neutron                                     
+              cell      mat   density     density     volume       mass            pieces importance                                   
+
+        1        1        1  7.21288E-02 1.07771E+01 4.21042E+05 4.53762E+06           0  1.0000E+00                                   
+        2        2        0  0.00000E+00 0.00000E+00 1.70310E+04 0.00000E+00           0  1.0000E+00                                   
+        3        3        2s 4.37082E-02 6.56190E+00 1.28433E+05 8.42765E+05           0  1.0000E+00                                   
+        4        4        3s 7.02160E-02 7.00000E-01 3.12197E+05 2.18538E+05           0  1.0000E+00                                   
+        5        5        0  0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00           0  0.0000E+00                                   
+
+ total                                               8.78703E+05 5.59892E+06
+
+         3 warning messages so far.
+1cross-section tables                                                                                   print table 100
+     XSDIR used: C:\MCNP_SOURCE\MCNP_DATA/xsdir_mcnp6.2
+
+     table    length
+
+                        tables from file xdata/endf71x/H/1001.711nc                                      
+
+   1001.81c    3652  H1 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)          mat 125      12/17/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     particle-production data for deuterons being expunged from   1001.81c          
+
+                        tables from file xdata/endf71x/Li/3006.711nc                                     
+
+   3006.81c   22410  Li6 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)         mat 325      12/13/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     particle-production data for tritons   being expunged from   3006.81c          
+                     particle-production data for alphas    being expunged from   3006.81c          
+
+                        tables from file xdata/endf71x/Li/3007.711nc                                     
+
+   3007.81c   16324  Li7 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)         mat 328      12/13/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+
+                        tables from file xdata/endf71x/O/8016.711nc                                      
+
+   8016.81c  171258  O16 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)         mat 825      12/13/12
+                     Energy range:   1.00000E-11  to  1.50000E+02 MeV.
+                     particle-production data for protons   being expunged from   8016.81c          
+                     particle-production data for deuterons being expunged from   8016.81c          
+                     particle-production data for tritons   being expunged from   8016.81c          
+                     particle-production data for alphas    being expunged from   8016.81c          
+
+                        tables from file xdata/endf71x/O/8016.712nc                                      
+
+   8016.82c  171290  O16 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)         mat 825      12/13/12
+                     Energy range:   1.00000E-11  to  1.50000E+02 MeV.
+                     particle-production data for protons   being expunged from   8016.82c          
+                     particle-production data for deuterons being expunged from   8016.82c          
+                     particle-production data for tritons   being expunged from   8016.82c          
+                     particle-production data for alphas    being expunged from   8016.82c          
+
+                        tables from file xdata/endf71x/Cr/24050.711nc                                    
+
+  24050.81c  214670  Cr50 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat2425      12/13/12
+                     Energy range:   1.00000E-11  to  1.50000E+02 MeV.
+                     particle-production data for protons   being expunged from  24050.81c          
+                     particle-production data for deuterons being expunged from  24050.81c          
+                     particle-production data for tritons   being expunged from  24050.81c          
+                     particle-production data for alphas    being expunged from  24050.81c          
+
+                        tables from file xdata/endf71x/Cr/24052.711nc                                    
+
+  24052.81c  222694  Cr52 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat2431      12/13/12
+                     Energy range:   1.00000E-11  to  1.50000E+02 MeV.
+                     particle-production data for protons   being expunged from  24052.81c          
+                     particle-production data for deuterons being expunged from  24052.81c          
+                     particle-production data for tritons   being expunged from  24052.81c          
+                     particle-production data for alphas    being expunged from  24052.81c          
+
+                        tables from file xdata/endf71x/Cr/24053.711nc                                    
+
+  24053.81c  187257  Cr53 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat2434      12/13/12
+                     Energy range:   1.00000E-11  to  1.50000E+02 MeV.
+                     particle-production data for protons   being expunged from  24053.81c          
+                     particle-production data for deuterons being expunged from  24053.81c          
+                     particle-production data for tritons   being expunged from  24053.81c          
+                     particle-production data for alphas    being expunged from  24053.81c          
+
+                        tables from file xdata/endf71x/Cr/24054.711nc                                    
+
+  24054.81c  138283  Cr54 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat2437      12/13/12
+                     Energy range:   1.00000E-11  to  1.50000E+02 MeV.
+                     particle-production data for protons   being expunged from  24054.81c          
+                     particle-production data for deuterons being expunged from  24054.81c          
+                     particle-production data for tritons   being expunged from  24054.81c          
+                     particle-production data for alphas    being expunged from  24054.81c          
+
+                        tables from file xdata/endf71x/Fe/26054.711nc                                    
+
+  26054.81c  151394  Fe54 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat2625      12/22/12
+                     Energy range:   1.00000E-11  to  1.50000E+02 MeV.
+                     particle-production data for protons   being expunged from  26054.81c          
+                     particle-production data for deuterons being expunged from  26054.81c          
+                     particle-production data for tritons   being expunged from  26054.81c          
+                     particle-production data for alphas    being expunged from  26054.81c          
+
+                        tables from file xdata/endf71x/Fe/26056.711nc                                    
+
+  26056.81c  245331  Fe56 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat2631      12/22/12
+                     Energy range:   1.00000E-11  to  1.50000E+02 MeV.
+                     particle-production data for protons   being expunged from  26056.81c          
+                     particle-production data for deuterons being expunged from  26056.81c          
+                     particle-production data for tritons   being expunged from  26056.81c          
+                     particle-production data for alphas    being expunged from  26056.81c          
+
+                        tables from file xdata/endf71x/Fe/26057.711nc                                    
+
+  26057.81c  156858  Fe57 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat2634      12/22/12
+                     Energy range:   1.00000E-11  to  1.50000E+02 MeV.
+                     particle-production data for protons   being expunged from  26057.81c          
+                     particle-production data for deuterons being expunged from  26057.81c          
+                     particle-production data for tritons   being expunged from  26057.81c          
+                     particle-production data for alphas    being expunged from  26057.81c          
+
+                        tables from file xdata/endf71x/Zr/40090.711nc                                    
+
+  40090.81c   96101  Zr90 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat4025      12/18/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     particle-production data for protons   being expunged from  40090.81c          
+                     particle-production data for deuterons being expunged from  40090.81c          
+                     particle-production data for tritons   being expunged from  40090.81c          
+                     particle-production data for helions   being expunged from  40090.81c          
+                     particle-production data for alphas    being expunged from  40090.81c          
+                     probability tables used from 5.3500E-02 to 1.0000E-01 mev.
+
+                        tables from file xdata/endf71x/Zr/40091.711nc                                    
+
+  40091.81c  265305  Zr91 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat4028      12/18/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     particle-production data for protons   being expunged from  40091.81c          
+                     particle-production data for deuterons being expunged from  40091.81c          
+                     particle-production data for tritons   being expunged from  40091.81c          
+                     particle-production data for helions   being expunged from  40091.81c          
+                     particle-production data for alphas    being expunged from  40091.81c          
+                     probability tables used from 1.0000E-02 to 1.0000E-01 mev.
+
+                        tables from file xdata/endf71x/Zr/40092.711nc                                    
+
+  40092.81c  152624  Zr92 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat4031      12/18/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     particle-production data for protons   being expunged from  40092.81c          
+                     particle-production data for deuterons being expunged from  40092.81c          
+                     particle-production data for tritons   being expunged from  40092.81c          
+                     particle-production data for helions   being expunged from  40092.81c          
+                     particle-production data for alphas    being expunged from  40092.81c          
+                     probability tables used from 7.1000E-02 to 1.0000E-01 mev.
+
+                        tables from file xdata/endf71x/Zr/40094.711nc                                    
+
+  40094.81c  165057  Zr94 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat4037      12/18/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     particle-production data for protons   being expunged from  40094.81c          
+                     particle-production data for deuterons being expunged from  40094.81c          
+                     particle-production data for tritons   being expunged from  40094.81c          
+                     particle-production data for helions   being expunged from  40094.81c          
+                     particle-production data for alphas    being expunged from  40094.81c          
+                     probability tables used from 9.0000E-02 to 1.0000E-01 mev.
+
+                        tables from file xdata/endf71x/Zr/40096.711nc                                    
+
+  40096.81c  122109  Zr96 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat4043      12/18/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     particle-production data for protons   being expunged from  40096.81c          
+                     particle-production data for deuterons being expunged from  40096.81c          
+                     particle-production data for tritons   being expunged from  40096.81c          
+                     particle-production data for helions   being expunged from  40096.81c          
+                     particle-production data for alphas    being expunged from  40096.81c          
+
+                        tables from file xdata/endf71x/Sn/50116.711nc                                    
+
+  50116.81c  181484  Sn116 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)       mat5037      12/15/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     probability tables used from 3.0000E-02 to 1.0000E-01 mev.
+
+                        tables from file xdata/endf71x/Sn/50117.711nc                                    
+
+  50117.81c  104365  Sn117 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)       mat5040      12/15/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     probability tables used from 2.3000E-03 to 1.0000E-01 mev.
+
+                        tables from file xdata/endf71x/Sn/50118.711nc                                    
+
+  50118.81c   51745  Sn118 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)       mat5043      12/15/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     probability tables used from 2.0000E-03 to 1.0000E-01 mev.
+
+                        tables from file xdata/endf71x/Sn/50119.711nc                                    
+
+  50119.81c   95560  Sn119 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)       mat5046      12/15/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     probability tables used from 1.2600E-03 to 1.0000E-01 mev.
+
+                        tables from file xdata/endf71x/Sn/50120.711nc                                    
+
+  50120.81c  165282  Sn120 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)       mat5049      12/16/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     probability tables used from 5.0000E-02 to 1.0000E-01 mev.
+
+                        tables from file xdata/endf71x/Sn/50122.711nc                                    
+
+  50122.81c  204506  Sn122 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)       mat5055      12/16/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+
+                        tables from file xdata/endf71x/Sn/50124.711nc                                    
+
+  50124.81c  147742  Sn124 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)       mat5061      12/16/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+
+                        tables from file xdata/endf71x/U/92235.712nc                                     
+
+  92235.82c  522765  U235 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/total nu 10:00:53)        mat9228      12/19/12
+                     Energy range:   1.00000E-11  to  2.00000E+01 MeV.
+                     probability tables used from 2.2500E-03 to 2.5000E-02 mev.
+
+                        tables from file xdata/endf71x/U/92238.712nc                                     
+
+  92238.82c 1071757  U238 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/total nu 10:00:53)        mat9237      12/13/12
+                     Energy range:   1.00000E-11  to  3.00000E+01 MeV.
+                     probability tables used from 2.0000E-02 to 1.4903E-01 mev.
+
+                        tables from file xdata/ENDF71SaB/fe56.24t                                        
+
+   fe56.24t 1448738  Fe56 at 600K from ENDF/B-VII                                           26056     0     0  01/19/12
+                     Energy range:   0.00000E+00  to  9.15000E-06 MeV.
+
+                        tables from file xdata/tmccs                                                     
+
+   lwtr.04t   10193  hydrogen in light water at 600 degrees kelvin                           1001     0     010/22/85  
+                     Energy range:   0.00000E+00  to  4.46000E-06 MeV.
+
+  total     6506754
+
+1particles and energy limits                                                                            print table 101
+
+                         particle      maximum       smallest      largest       always        always
+                         cutoff        particle      table         table         use table     use model
+   particle type         energy        energy        maximum       maximum       below         above
+
+    1  n    neutron     0.0000E+00    1.0000E+36    2.0000E+01    1.5000E+02    1.0000E+36    1.0000E+36
+ 
+  comment.  setting up hash-based fast table search for xsec tables
+
+ ------------------------------------------------------------------------------------------
+ =====> Set up arrays for hash-based fast table search for xsec data
+
+    number of hash bins   =     8192
+    min hash table energy =  1.00000E-11
+    max hash table energy =  1.50000E+02
+
+           nuclide      ne      emin        emax     ave_bins  min_bins  max_bins
+            1001.81c     590 1.00000E-11 2.00000E+01       0.1       0.0       1.0
+            3006.81c     841 1.00000E-11 2.00000E+01       0.1       0.0       3.0
+            3007.81c     693 1.00000E-11 2.00000E+01       0.1       0.0       3.0
+            8016.81c    2933 1.00000E-11 1.50000E+02       0.4       0.0      33.0
+            8016.82c    2941 1.00000E-11 1.50000E+02       0.4       0.0      33.0
+           24050.81c   33185 1.00000E-11 1.50000E+02       4.1       0.0     238.0
+           24052.81c   32198 1.00000E-11 1.50000E+02       3.9       0.0     201.0
+           24053.81c   23633 1.00000E-11 1.50000E+02       2.9       0.0     137.0
+           24054.81c   15045 1.00000E-11 1.50000E+02       1.8       0.0     131.0
+           26054.81c   20761 1.00000E-11 1.50000E+02       2.5       0.0     180.0
+           26056.81c   29275 1.00000E-11 1.50000E+02       3.6       0.0     176.0
+           26057.81c   15815 1.00000E-11 1.50000E+02       1.9       0.0     200.0
+           40090.81c    4393 1.00000E-11 2.00000E+01       0.5       0.0     118.0
+           40091.81c    9222 1.00000E-11 2.00000E+01       1.1       0.0     104.0
+           40092.81c   11310 1.00000E-11 2.00000E+01       1.4       0.0     132.0
+           40094.81c   11695 1.00000E-11 2.00000E+01       1.4       0.0     128.0
+           40096.81c    6150 1.00000E-11 2.00000E+01       0.8       0.0     125.0
+           50116.81c   29597 1.00000E-11 2.00000E+01       3.6       0.0     201.0
+           50117.81c   12323 1.00000E-11 2.00000E+01       1.5       0.0      87.0
+           50118.81c    4602 1.00000E-11 2.00000E+01       0.6       0.0      99.0
+           50119.81c    7027 1.00000E-11 2.00000E+01       0.9       0.0      78.0
+           50120.81c   24688 1.00000E-11 2.00000E+01       3.0       0.0     185.0
+           50122.81c   43995 1.00000E-11 2.00000E+01       5.4       0.0     247.0
+           50124.81c   25341 1.00000E-11 2.00000E+01       3.1       0.0     193.0
+           92235.82c   53935 1.00000E-11 2.00000E+01       6.6       0.0     168.0
+           92238.82c  122570 1.00000E-11 3.00000E+01      15.0       0.0     346.0
+            fe56.24t     116 1.78000E-11 9.15000E-06       0.0       0.0       1.0
+            lwtr.04t      56 1.78000E-11 4.46000E-06       0.0       0.0       1.0
+
+ ------------------------------------------------------------------------------------------
+
+
+ ***********************************************************************************************************************
+
+ dump no.    1 on file runtpe     nps =           0     coll =              0     ctm =        0.00   nrn =             
+    0
+
+ source distribution written to file srctp        cycle=     0
+
+         3 warning messages so far.
+
+ comment.
+ comment. entropy of the fission source distribution will be computed
+ comment.
+ comment. the mesh for source entropy is based on the site coordinates
+ comment.   using  7 x  7 x  7 =   343  mesh cells
+ comment.
+ comment.     Xmin= -1.4085E+00     Xmax=  1.4090E+00
+ comment.     Ymin= -1.4093E+00     Ymax=  1.4079E+00
+ comment.     Zmin= -8.5841E+01     Zmax=  8.1332E+01
+ comment.
+ comment. the mesh will be automatically expanded if necessary to
+ comment.   encompass the entire fission source distribution
+ comment.
+
+1estimated keff results by cycle                                                                        print table 175
+
+ cycle     1    k(collision)  1.230906    prompt removal lifetime(abs)  1.4564E+03    source points generated   9773
+                                          source_entropy =     3.7714E+00
+
+ cycle     2    k(collision)  1.218949    prompt removal lifetime(abs)  1.4177E+03    source points generated  10028
+                                          source_entropy =     4.2319E+00
+        expanding auto-mesh for entropy, dir= Z      -8.5841E+01  1.2105E+02
+
+ cycle     3    k(collision)  1.245500    prompt removal lifetime(abs)  1.4693E+03    source points generated  10166
+                                          source_entropy =     4.2300E+00
+        expanding auto-mesh for entropy, dir= Z      -1.3777E+02  1.2105E+02
+
+ cycle     4    k(collision)  1.220953    prompt removal lifetime(abs)  1.4570E+03    source points generated   9819
+                                          source_entropy =     4.1187E+00
+
+ cycle     5    k(collision)  1.226751    prompt removal lifetime(abs)  1.4546E+03    source points generated   9934
+                                          source_entropy =     4.2247E+00

@@ -1,35 +1,37 @@
 import numpy as np
 
-def atom_densities_uranium_oxide(mass_density, enrichment):
-    # Constants
-    molar_mass_U235 = 235.0439299  # g/mol
-    molar_mass_U238 = 238.0507882  # g/mol
-    molar_mass_O16 = 15.999  # g/mol
-    avogadro_number = 6.02214076e23  # atoms/mol
-    
-    # Calculate the molar mass of uranium in UO2 based on enrichment
-    molar_mass_U = enrichment * molar_mass_U235 + (1 - enrichment) * molar_mass_U238
-    molar_mass_UO2 = molar_mass_U + 2 * molar_mass_O16
-    
-    # Calculate the number of moles of UO2 per cm^3
-    moles_UO2_per_cm3 = mass_density / molar_mass_UO2
-    
-    # Calculate the atom densities
-    atom_density_UO2 = moles_UO2_per_cm3 * avogadro_number
-    atom_density_U235 = enrichment * atom_density_UO2
-    atom_density_U238 = (1 - enrichment) * atom_density_UO2
-    atom_density_O16 = 2 * atom_density_UO2
-    
-    return {
-        "U-235": atom_density_U235/1e24,
-        "U-238": atom_density_U238/1e24,
-        "O-16": atom_density_O16/1e24
-    }
+# Constants
+avogadro_number = 6.022e23  # atoms/mol
 
-UO2_density = 18.9  # g/cm^3
-UO2_enrich = 0.0296  # decimal enrichment: 5 wt% = 0.05
-densities = atom_densities_uranium_oxide(UO2_density, UO2_enrich)
+# Isotopic abundances for 4.3% enrichment
+abundance_u235 = 0.043  # 4.3% U-235
+abundance_u238 = 0.957  # 95.7% U-238
 
-print("Atom densities (atoms/cm^3):")
-for isotope, density in densities.items():
-    print(f"{isotope}: {density:.8f}")
+# Atomic masses (g/mol)
+mass_u235 = 235.04393  # g/mol
+mass_u238 = 238.05078  # g/mol
+mass_o16 = 15.999  # g/mol
+
+# Molar mass of uranium in enriched composition
+molar_mass_uranium = abundance_u235 * mass_u235 + abundance_u238 * mass_u238
+
+# Molar mass of UO2
+molar_mass_uo2 = molar_mass_uranium + 2 * mass_o16
+
+# Effective uranium density (g/cc)
+uranium_density = 9.5  # g/cm^3
+
+# Atom density of uranium in UO2 (U atoms per cm³)
+atom_density_uranium = (uranium_density / molar_mass_uranium) * avogadro_number
+print(atom_density_uranium*1e-24)
+# Atom densities of U-235 and U-238
+atom_density_u235 = atom_density_uranium * abundance_u235
+atom_density_u238 = atom_density_uranium * abundance_u238
+
+# Atom density of oxygen in UO2 (2 oxygen atoms per UO2 molecule)
+atom_density_o16 = atom_density_uranium * 2  # Two oxygen atoms for each U atom
+
+# Display results
+print(f"Atom density of U-235: {atom_density_u235*1e-24:.12f} atoms/cm³")
+print(f"Atom density of U-238: {atom_density_u238*1e-24:.12f} atoms/cm³")
+print(f"Atom density of O-16:  {atom_density_o16*1e-24:.12f} atoms/cm³")

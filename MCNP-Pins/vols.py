@@ -1,6 +1,6 @@
 import numpy as np
 
-c = (15**2-25)*21 #  # (17**2-25)*21
+c = (17**2-25)*21 #  # (17**2-25)*21
 h = 144.16
 breed_clad_cc = (np.pi*0.4750**2 - np.pi*0.4177**2)*h*c
 gap_cc = (np.pi*0.4177**2 - np.pi*0.4095**2)*h*c
@@ -9,7 +9,7 @@ water_cc = 0.625**2*h*c
 
 print(pellet_cc)
 print(gap_cc)
-print(breed_clad_cc)
+print(f"clad: {breed_clad_cc}")
 print(water_cc)
 
 

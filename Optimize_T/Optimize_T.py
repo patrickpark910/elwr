@@ -12,6 +12,7 @@ mm_U238 = 238.051 # g/mol
 # Physical constants
 mu = 1.660539 # b-mol/cm**2-at
 avo = 6.022e23 # at/mol
+lambda_T = 1.78287158e-9 # 1/s
 
 # Reactor materials
 e_U   = 0.035
@@ -29,22 +30,23 @@ def main():
     b_max  = 19.9 # MWd/kgU of CLEAN core at k=1.03
     b_step = 1e-4 # MWd/kgU
 
-    c_list = [50,90,100,110,120,130,150] # list(range(60, 141, 5))
-    T_solutions, b_solutions = [], []
+    c_list = [104] # list(range(60, 141, 5))
+    Tnd_solutions, Td_solutions, b_solutions = [], [], []
 
     for c_0 in c_list: # mgLi6/kgU
         print(f"===============")
         print(f"Starting mgLi6/kgU   : {c_0:.4f}")
         
-        b, m_T, c_i = 0, 0, c_0  # initial burnup, mass_T
+        b, m_T, m_T_nodecay, c_i = 0, 0, 0, c_0  # initial burnup, mass_T
         k = K_c(b,c_0) # initial k-eff (only to initialize k for while loop--not a real value, k-regression only true for b > 1)
         n_Li6_i = c_i/mu/mm_Li6/V_clad_core/1000*m_U # at/b-cm
         
         print(f"Starting Li6 numdens : {n_Li6_i} (to check with MCNP mat gen script)")
 
-        b_list, k_list, cf_list, cffrac_list, dmT_list, mT_list = [], [], [], [], [], []
+        b_list, k_list, cf_list, cffrac_list, dmT_list, mT_list, mTd_list = [], [], [], [], [], [], []
         while k >= 1.030001 and b < b_max:
             b  += b_step
+            t_step = 3.05e6*b_step # s/MWd/kgU * MWd/kgU
             b_list.append(b)
             
             # Calculate remaining Li6 after burnstep using Midpoint Rule
@@ -52,13 +54,17 @@ def main():
             c_f = C_b(b_step,c_i,c_m)   # use c_m to compute final c_f: c_f = c_i exp(-sigma(c_m)*phi(c_m)*3e6*b_step)
             cf_list.append(c_f)
             cffrac_list.append(c_f/c_0)
-            # print(f"b, c_i, c_m, c_f: {b:.4f}, {c_i:.4f}, {c_m:.4f}, {c_f:.4f}") # useful to observe
+            print(f"b, c_i, c_m, c_f: {b:.4f}, {c_i:.4f}, {c_m:.4f}, {c_f:.4f}") # useful to observe
             
             # Calculate incremental dmass_T made and add to cumulative mass_T
             dm_T = M_T(c_i,c_f)
-            m_T += dm_T
+            m_T  += dm_T
+            m_T_nodecay += dm_T
             dmT_list.append(dm_T)
-            mT_list.append(m_T)
+            mT_list.append(m_T_nodecay)
+
+            m_T *= np.exp(-1*lambda_T*t_step) # <----------- DECAY STEP *****
+            mTd_list.append(m_T)
 
             # Predict k-eff after this burnstep (with c_f mgLi6/kgU)
             k = K_c(b,c_f)
@@ -70,20 +76,21 @@ def main():
         print(f"Predicted k-eff      :  {k:.6f}")
         print(f"...at MWd/kgU        : {b:.6f} ")
         print(f"Remaining mgLi6/kgU  : {c_f:.6f}")
-        print(f"Tritium made [g]     : {m_T:.6f}")
+        print(f"Tritium made     [g] : {m_T:.6f}")
 
         # Save this iteration's data to plot later
-        df = pd.DataFrame({'MWd/kgU': b_list,'k-eff':k_list, 'Left mgLi6/kgU': cf_list,'Left %': cffrac_list,'g T made': dmT_list,'g T tot': mT_list})
+        df = pd.DataFrame({'MWd/kgU': b_list,'k-eff':k_list, 'Left mgLi6/kgU': cf_list,'Left %': cffrac_list,'g T made': dmT_list,'g T tot': mT_list, 'g T net': mTd_list})
         df.set_index('MWd/kgU', inplace=True)
         # df.to_csv(f'output-Li{str(c_0).zfill(3)}.csv')
 
         # Append this iteration's solutions to list of ALL solutions to be plotted by plot_results()
-        T_solutions.append(m_T)
+        Tnd_solutions.append(m_T_nodecay)
+        Td_solutions.append(m_T)
         b_solutions.append(b)
 
     # print(T_solutions)
     # print(b_solutions)
-    # plot_results(c_list, T_solutions, b_solutions)
+    # plot_results(c_list, Tnd_solutions, Td_solutions, b_solutions)
 
 def Sigma(c):
     return (7.433510e-5*c**2 - 8.600433E-02*c + 7.264452E+01)*1e-24
@@ -95,7 +102,7 @@ def M_T(c_i,c_f):
     return (c_i-c_f)*mm_T/mm_Li6*m_U/1000
 
 def K_c(b,c):
-    return K_0(b) + 1.49241096E-06*c**2 - 1.55556423E-03*c
+    return K_0(b) + (1.49241096E-06*c**2 - 1.55556423E-03*c)*0.9623336484
 
 def K_0(b):
     return 7.703583E-05*b**2 - 1.194196E-02*b + 1.236691
@@ -105,16 +112,21 @@ def C_b(b,c_i,c):
     # print(f"phi  : {Phi(c_b):.2e}")
     return c_i*np.exp(-Sigma(c)*Phi(c) * 86400 * 35.26 * b)
 
-def plot_results(c, T, b):
+def plot_results(c, Tnd, Td, b):
     fig, ax1 = plt.subplots()
 
     # Li-6 concentration vs. T produced
-    c, T = np.array(c), np.array(T)
-    c_T_Spline = make_interp_spline(c, T)
+    c, Tnd, Td = np.array(c), np.array(Tnd), np.array(Td)
+    c_Tnd_Spline = make_interp_spline(c, Tnd)
+    c_Td_Spline = make_interp_spline(c, Td)
     c_ = np.linspace(c.min(), c.max(), 500)
-    T_ = c_T_Spline(c_)
-    ax1.plot(c_, T_, color='blue') # marker='o'
-    ax1.plot(c, T, '.', color='blue') # marker='o'
+    Tnd_ = c_Tnd_Spline(c_)
+    Td_ = c_Td_Spline(c_)
+    ax1.plot(c_, Tnd_, color='blue') # marker='o'
+    ax1.plot(c, Tnd, '.', color='blue') # marker='o'
+    ax1.plot(c_, Td_, color='blue') # marker='o'
+    ax1.plot(c, Td, '.', color='blue') # marker='o'
+    plt.fill_between(c_, Td_, Tnd_, where=(Tnd_ > Td_), facecolor='blue', alpha=0.25, interpolate=True, label='Area where cos(x) > sin(x)')
     ax1.set_xlabel('Initial Li-6 concentration [mg/kgU]')
     ax1.set_ylabel('T produced [g]', color='b')
     ax1.tick_params(axis='y', labelcolor='b')
@@ -126,12 +138,12 @@ def plot_results(c, T, b):
     b_ = c_b_Spline(c_)
     ax2.plot(c_, b_, color='red')
     ax2.plot(c, b, '.', color='red')
-    ax2.set_ylabel('Discharge burnup [MWd/kgU]', color='r')
+    ax2.set_ylabel('Cycle burnup [MWd/kgU]', color='r')
     ax2.tick_params(axis='y', labelcolor='r')
 
     # plt.grid(True)
-    # plt.show()
-    plt.savefig('Optimize_T.svg',format='svg',transparent=True)
+    plt.show()
+    # plt.savefig('Optimize_T_decay.svg',format='svg',bbox_inches=0,transparent=True)
 
 if __name__ == '__main__':
     main()

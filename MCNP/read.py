@@ -3,19 +3,12 @@ import pandas as pd
 import numpy as np
 
 directories = [
-    './A-cladSS-Li00-bu10',
-    './A-cladSS-Li18-bu10',
-    './A-cladSS-Li20-bu10',
-    './A-cladSS-Li22-bu10',
-    './A-cladSS-Li24-bu10',
-    './A-cladSS-Li26-bu10',
-    './A-cladSS-Li28-bu10',
-    './A-cladZr-Li00-bu10',
-    './A-cladZr-Li32-bu10',
-    './A-cladZr-Li34-bu10',
-    './A-cladZr-Li36-bu10',
-    './A-cladZr-Li39_4-bu10',
-    './A-cladZr-Li40-bu10',
+    './A-cladSS-Li043-bu10',
+    './A-cladSS-Li054-bu10',
+    './A-cladSS-Li067-bu10',
+    # './A-cladZr-Li056-bu10',
+    #'./A-cladZr-Li078-bu10',
+    #'./A-cladZr-Li104-bu10',
     ]
 
 cols = ['EFPD','Burnup','k-eff','std-dev','rho', 
@@ -31,7 +24,7 @@ cols = ['EFPD','Burnup','k-eff','std-dev','rho',
         'PU_11qual','PU_12qual','PU_1qual','PU_21qual','PU_22qual','PU_2qual','PU_31qual','PU_32qual','PU_3qual','PU_41qual','PU_42qual','PU_4qual','PU_51qual','PU_52qual','PU_5qual',
         'U235','U238','PU239','PU240','PU241','PU242','PUtot','PUqual']
 
-bu_list = [0,0.1,1,5,10,15,20,25]
+bu_list = [0,0.1,1,5,10,15] # ,20] # ,20,25]
 isotope_list = ['U235','U238','PU239','PU240','PU241','PU242']
 cells = [111,121,211,221,311,321,411,421,511,521]
 
@@ -132,7 +125,8 @@ for directory in directories:
                                 for s in [1,2]:
                                     col = f'{i}_{f}{s}'
                                     if (df[col] == 0).all():
-                                        d = [0, float(e[3]), float(e[5]), float(e[7]), float(e[9]), float(e[11]), float(e[13]), 0]
+                                        # print(line)
+                                        d = [0, float(e[3]), float(e[5]), float(e[7]), float(e[9]), float(e[11]),] #float(e[13]),] # float(e[13]), 0]
                                         d = [x/1e3/n_fa[f] for x in d]
                                         # print(i,f,s,d,'\n')
                                         df[col] = d

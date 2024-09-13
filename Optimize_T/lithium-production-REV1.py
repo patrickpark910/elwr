@@ -16,7 +16,7 @@ def keff(b):
     Retuns the value of k(eff) for a given burnup
     """
     
-    return 1.235 - 0.01025 * b
+    return 7.703583E-05*b**2 - 1.194196E-02*b + 1.236691 # 1.235 - 0.01025 * b
 
 # --------------------------------------------------------------
 
@@ -55,9 +55,9 @@ def fracreduction(l,deltab):
 #%% 
 
 b = 0
-k0 = 1.235
+k0 = 1.33 # 1.235
 
-l0 = 100  # Initial lithium loading
+l0 = 104  # Initial lithium loading
 bi = 1e-4  # Burnup increment per cycle
 
 k = k0 + deltak(l0)

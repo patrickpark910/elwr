@@ -40,7 +40,7 @@ avo = 6.022e23 # at/mol
 # Reactor settings
 e_U = 0.035
 e_Li = 0.9
-correction = 1 # 0.605887557 # 0.605887557
+correction = 1 # 0.7450072562255365 # 1
 
 m_UO2 = 4000 # kg
 m_U = m_UO2*(e_U*mm_U235+(1-e_U)*mm_U238)/(32+(e_U*mm_U235+(1-e_U)*mm_U238)) # kg
@@ -55,8 +55,8 @@ V_clad_core = V_clad_pin*num_pins # cc of cladding in whole core
 rho_clad = 6.56 # g/cc
 # print(f"V_clad in core: {V_clad_core} == 128433.413 (check)")
 
-c_i = [200] # mgLi6/kgU
-for c_i in c_i:
+c_list = [77.4808,100] # mgLi6/kgU
+for c_i in c_list:
     c_i_corr   = c_i*correction
     m_Li6_core = c_i_corr*m_U/1000 # g = mg/kgU*kgU/1000
     m_Li6_pin  = m_Li6_core/num_pins # g
@@ -73,11 +73,11 @@ for c_i in c_i:
     for i in n_zr4_dict.keys():
         n_tot_pin += n_zr4_dict[i]
     
-    print(f"c lithium-doped zircaloy-4 cladding | rho = {rho_clad_new:.4f}")
+    print(f"c lithium-doped zircaloy-4 cladding | rho = {rho_clad_new:.4f} | 325 C / 600 K")
     # print(f"c suppposed to be {c_i} mg(Li-6)/kg(U) = tot {m_Li6_core*1000/correction:.0f} mg / {m_U:.0f} kg")
     # print(f"c but script applies correction: {correction:.6f}")
     print(f"c {c_i_corr:.4f} mg(Li-6)/kg(U) = tot {m_Li6_core*1000:.0f} mg / {m_U:.0f} kg")
-    print(f"c tot at dens = {n_tot_pin:.10f} [at/b-cm]")
+    print(f"c tot N = {n_tot_pin:.10f} at/b-cm")
     print(f"m3101  3006.81c  {n_Li6_pin:.12f} ")
     print(f"       3007.81c  {n_Li7_pin:.12f} ")
     for i in n_zr4_dict.keys():

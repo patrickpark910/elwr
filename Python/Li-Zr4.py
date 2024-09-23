@@ -55,7 +55,7 @@ V_clad_core = V_clad_pin*num_pins # cc of cladding in whole core
 rho_clad = 6.56 # g/cc
 # print(f"V_clad in core: {V_clad_core} == 128433.413 (check)")
 
-c_list = [77.4808,100] # mgLi6/kgU
+c_list = [140.719933] # mgLi6/kgU
 for c_i in c_list:
     c_i_corr   = c_i*correction
     m_Li6_core = c_i_corr*m_U/1000 # g = mg/kgU*kgU/1000

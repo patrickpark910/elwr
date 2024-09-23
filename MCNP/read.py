@@ -3,12 +3,11 @@ import pandas as pd
 import numpy as np
 
 directories = [
-    './A-cladSS-Li043-bu10',
-    './A-cladSS-Li054-bu10',
-    './A-cladSS-Li067-bu10',
-    # './A-cladZr-Li056-bu10',
-    #'./A-cladZr-Li078-bu10',
-    #'./A-cladZr-Li104-bu10',
+    # './A-cladZr-Li091-bu10',
+    './A-cladZr-Li139-bu10',
+    './A-cladZr-Li141-bu10',
+    # './A-cladSS-Li057-bu10',
+    # './A-cladSS-Li079-bu10',
     ]
 
 cols = ['EFPD','Burnup','k-eff','std-dev','rho', 

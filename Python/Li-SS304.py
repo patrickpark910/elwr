@@ -53,7 +53,7 @@ V_clad_pin = np.pi*(R_clad_out**2-R_clad_in**2)*H_clad # should be 23.1662 cc
 V_clad_core = V_clad_pin*num_pins # cc of cladding in whole core
 rho_clad = 8.03 # g/cc -----------------CHANGE
 
-c_i = [67,54.36,43.35] # mgLi6/kgU
+c_i = [56.829414,79.389493] # mgLi6/kgU
 for c_i in c_i:
     c_i_corr   = c_i*correction
     m_Li6_core = c_i_corr*m_U/1000 # g = mg/kgU*kgU/1000
